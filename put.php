@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $v1 = $_POST['sensorvalue1'];
     $v2 = $_POST['sensorvalue2'];
     $v3 = $_POST['sensorvalue3'];
+    $time = date("Y-m-d H:i:s",time());
     // Create connection
     $conn = new mysqli(servername, username, password, dbname);
     // Check connection
@@ -14,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $stmt = $conn->prepare("INSERT INTO waterlevel (`sensor_value_1`, `sensor_value_2`, `sensor_value_3`) VALUES (?,?,?)");
-    $stmt->bind_param("iii", $v1, $v2, $v3);
+    $stmt = $conn->prepare("INSERT INTO waterlevel (`sensor_value_1`, `sensor_value_2`, `sensor_value_3`, `datetime`) VALUES (?,?,?,?)");
+    $stmt->bind_param("iiis", $v1, $v2, $v3, $time);
     $stmt->execute();
     echo "Values added successfully";
     $stmt->close();
