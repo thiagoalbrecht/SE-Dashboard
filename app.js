@@ -4,7 +4,9 @@ var dashboardApp = new Vue({
     el: '#SEDashboard',
 
     data: {
-        level: []
+        level1: 'XX',
+        level2: 'XX',
+        level3: 'XX'
     },
 
     methods: {
@@ -15,9 +17,9 @@ var dashboardApp = new Vue({
             axios.get(rootURL + task)
                 .then(response => {
                     //this.level = JSON.parse(response.data);
-                    this.level[0] = response.data['sensor_value_1'];
-                    this.level[1] = response.data['sensor_value_2'];
-                    this.level[2] = response.data['sensor_value_3'];
+                    this.level1 = response.data['sensor_value_1'];
+                    this.level2 = response.data['sensor_value_2'];
+                    this.level3 = response.data['sensor_value_3'];
                     
                     console.log(this.level);
                     this.refreshItems();
