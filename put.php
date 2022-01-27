@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require 'secret/credentials.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -13,9 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $stmt = $conn->prepare("INSERT INTO waterlevel ('sensor-value-1', 'sensor-value-2', 'sensor-value-3') VALUES ???");
+    $stmt = $conn->prepare("INSERT INTO waterlevel (`sensor_value_1`, `sensor_value_2`, `sensor_value_3`) VALUES (?,?,?)");
     $stmt->bind_param("iii", $v1, $v2, $v3);
     $stmt->execute();
+    echo "Values added successfully";
     $stmt->close();
     $conn->close();
 
