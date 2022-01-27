@@ -29,7 +29,6 @@ var dashboardApp = new Vue({
                         this.lastdate = response.data['datetime'];
                         if (this.liveUpdate && repeat) {
                             this.refreshItems(false, true);
-                            console.log("Print");
                         }
                     }).catch(err => {
                         doingRequest = false;
