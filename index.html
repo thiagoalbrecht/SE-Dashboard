@@ -15,11 +15,12 @@
 <body>
     <div id="SEDashboard">
         <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <div class="dropdown"><button class="btn btn-outline-primary btn-sm" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="position:fixed; top: 0; left: 0"><i class="fas fa-cog"></i></button>
+            <div class="dropdown"><button class="btn btn-outline-primary btn-sm" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="position: fixed;top: 0;left: 0;margin: 5px;"><i class="fas fa-cog"></i></button>
                 <div class="dropdown-menu text-center">
                     <div style="height: 28px;">
-                        <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="formCheck-1" checked disabled><label class="form-check-label" for="formCheck-1">Live update</label></div>
-                    </div><button class="btn btn-outline-primary btn-sm" type="button"><i class="fas fa-redo-alt me-2"></i>Refresh now</button>
+                        <div class="form-check form-switch"><input type="checkbox" v-model="liveUpdate" v-on:click="refreshItems(true, true)" class="form-check-input" id="formCheck-1" /><label class="form-check-label" for="formCheck-1">Live update</label></div>
+                    </div><button class="btn btn-outline-primary btn-sm" type="button" v-on:click="refreshItems(true, true)" :disabled="liveUpdate"><i class="fas fa-redo-alt me-2"></i>Refresh now</button>
+                    <p style="margin-bottom: -6px;margin-top: 6px;font-size: 0.8em;">Last data received: <br />{{ lastdate }}</p>
                 </div>
             </div>
             <div class="d-flex align-items-md-center" style="height: 100%;">
@@ -40,6 +41,6 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
 </body>
-<script src="app.js"></script>
 </html>
