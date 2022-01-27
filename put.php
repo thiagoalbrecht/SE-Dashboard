@@ -18,4 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $stmt->close();
     $conn->close();
+
+} else {
+    header("HTTP/1.1 400 Bad Request");
+  } 
 ?>
