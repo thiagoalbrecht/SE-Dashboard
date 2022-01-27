@@ -17,8 +17,14 @@ function getLatestValuesfromDB()
 
   $conn->close();
   
-  $json = json_encode($result->fetch_assoc());
-  if ($json == 'null') $json = '[]';
+  $result_array = $result->fetch_assoc();
+
+  $result_array['sensor_value_1'] = (int)$result_array['sensor_value_1'];
+  $result_array['sensor_value_2'] = (int)$result_array['sensor_value_2'];
+  $result_array['sensor_value_3'] = (int)$result_array['sensor_value_3'];
+  if (strlen($result_array['datetime']) == 0) $result_array['datetime'] = "00-00-00 00:00:00";
+
+  $json = json_encode($result_array);
   
   return $json;
 }
