@@ -1,7 +1,7 @@
 <?php
 require 'secret/credentials.php';
 header('Content-Type: application/json; charset=utf-8');
-function getLatestValuesfromDB()
+function getLatestValuesfromDB($omitDatetime)
 {
   // Create connection
   $conn = new mysqli(servername, username, password, dbname);
@@ -24,22 +24,23 @@ function getLatestValuesfromDB()
   $result_array['sensor_value_3'] = (int)$result_array['sensor_value_3'];
   if (strlen($result_array['datetime']) == 0) $result_array['datetime'] = "00-00-00 00:00:00";
 
+  if ($omitDatetime) $result_array['datetime'] = null;
   $json = json_encode($result_array);
   
   return $json;
 }
 
-$starting_content = $current_content = getLatestValuesfromDB();
+$starting_content = $current_content = getLatestValuesfromDB(true);
 
 $polling_delay_seconds = 0.5;
 
 if ($_GET['instant'] != '1') {
   while ($starting_content == $current_content && ($x < 15 / $polling_delay_seconds)) {
     usleep($polling_delay_seconds * 1000000); // Sleep 0.5s
-    $current_content = getLatestValuesfromDB();
+    $current_content = getLatestValuesfromDB(true);
     $x++;
   }
 }
 
-print_r(getLatestValuesfromDB());
+print_r(getLatestValuesfromDB(false));
 ?>
