@@ -28,5 +28,18 @@ function getLatestValuesfromDB()
   
   return $json;
 }
+
+$starting_content = $current_content = getLatestValuesfromDB();
+
+$polling_delay_seconds = 0.5;
+
+if ($_GET['instant'] != '1') {
+  while ($starting_content == $current_content && ($x < 15 / $polling_delay_seconds)) {
+    usleep($polling_delay_seconds * 1000000); // Sleep 0.5s
+    $current_content = getLatestValuesfromDB();
+    $x++;
+  }
+}
+
 print_r(getLatestValuesfromDB());
 ?>
