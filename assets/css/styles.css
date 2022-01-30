@@ -6,8 +6,8 @@
 }
 
 .progress-bar-vertical {
-  width: 60px;
-  height: 75vh;
+  width: 40px;
+  height: 100%;
   margin-right: 5vw;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -27,3 +27,34 @@
   transition: height 0.6s ease;
 }
 
+.hidepipeview {
+  display: none!important;
+}
+
+.hidebarview {
+  display: none!important;
+}
+
+@media (max-width: 1032px), (max-height: 600px) {
+  .pipeviewerror {
+    display: block!important;
+  }
+}
+
+@media (max-width: 1032px), (max-height: 600px) {
+  #PipeView {
+    display: none!important;
+  }
+}
+
+.pipe-bar1 {
+  transform: translate(-212px, -137px);
+}
+
+.pipe-bar2 {
+  transform: translate(300px, 181px);
+}
+
+.pipe-bar3 {
+  transform: translate(-350px, 181px);
+}

@@ -10,7 +10,8 @@ var dashboardApp = new Vue({
         level2: '0',
         level3: '0',
         lastdate: '00-00-0000 00:00:00',
-        liveUpdate: true
+        liveUpdate: true,
+        pipeView: true
     },
 
     methods: {
