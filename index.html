@@ -16,29 +16,29 @@
     <div id="SEDashboard">
         <div class="d-flex justify-content-center align-items-center" v-bind:class="{ hidepipeview: !pipeView }" id="PipeView" style="height: 100vh;"><img src="assets/img/pipes.svg" style="width: 1000px;">
             <div class="pipe-bar1" style="position: absolute;height: 126px;"><div class="progress progress-bar-vertical striped">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level1" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ height: level1 + '%' }">{{ level1 }}%</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level1" aria-valuemin="0" aria-valuemax="100" v-bind:class="{ 'bg-danger': level1 > 60 }" v-bind:style="{ height: level1 + '%' }">{{ level1 }}%</div>
 </div></div>
             <div class="pipe-bar2" style="position: absolute;height: 126px;"><div class="progress progress-bar-vertical striped">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level2" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ height: level2 + '%' }">{{ level2 }}%</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level2" aria-valuemin="0" aria-valuemax="100" v-bind:class="{ 'bg-danger': level2 > 60 }" v-bind:style="{ height: level2 + '%' }">{{ level2 }}%</div>
 </div></div>
             <div class="pipe-bar3" style="position: absolute;height: 126px;"><div class="progress progress-bar-vertical striped">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level3" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ height: level3 + '%' }">{{ level3 }}%</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level3" aria-valuemin="0" aria-valuemax="100" v-bind:class="{ 'bg-danger': level3 > 60 }" v-bind:style="{ height: level3 + '%' }">{{ level3 }}%</div>
 </div></div>
         </div>
         <div class="d-flex justify-content-center align-items-center" v-bind:class="{ hidebarview: pipeView }" id="BarView" style="height: 100vh">
             <div class="d-flex align-items-md-center" style="height: 100%;">
                 <div class="text-center align-self-center" style="margin: 0;height: 50%;"><div class="progress progress-bar-vertical striped">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level1" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ height: level1 + '%' }">{{ level1 }}%</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level1" aria-valuemin="0" aria-valuemax="100" v-bind:class="{ 'bg-danger': level1 > 60 }" v-bind:style="{ height: level1 + '%' }">{{ level1 }}%</div>
 </div><strong>Sensor 1</strong></div>
             </div>
             <div class="d-flex align-items-md-center" style="height: 100%;">
                 <div class="text-center align-self-center" style="margin: 0;height: 50%;"><div class="progress progress-bar-vertical striped">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level2" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ height: level2 + '%' }">{{ level2 }}%</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level2" aria-valuemin="0" aria-valuemax="100" v-bind:class="{ 'bg-danger': level2 > 60 }" v-bind:style="{ height: level2 + '%' }">{{ level2 }}%</div>
 </div><strong>Sensor 2<br></strong></div>
             </div>
             <div class="d-flex align-items-md-center" style="height: 100%;">
                 <div class="text-center align-self-center" style="margin: 0;height: 50%;"><div class="progress progress-bar-vertical striped">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level3" aria-valuemin="0" aria-valuemax="100" v-bind:style="{ height: level3 + '%' }">{{ level3 }}%</div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" v-bind:aria-valuenow="level3" aria-valuemin="0" aria-valuemax="100" v-bind:class="{ 'bg-danger': level3 > 60 }" v-bind:style="{ height: level3 + '%' }">{{ level3 }}%</div>
 </div><strong>Sensor 3</strong></div>
             </div>
         </div>
