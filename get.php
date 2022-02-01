@@ -1,7 +1,7 @@
 <?php
 require 'secret/credentials.php';
 header('Content-Type: application/json; charset=utf-8');
-function getLatestValuesfromDB($omitDatetime)
+function getLatestValuesfromDB()
 {
   // Create connection
   $conn = new mysqli(servername, username, password, dbname);
@@ -22,25 +22,24 @@ function getLatestValuesfromDB($omitDatetime)
   $result_array['sensor_value_1'] = (int)$result_array['sensor_value_1'];
   $result_array['sensor_value_2'] = (int)$result_array['sensor_value_2'];
   $result_array['sensor_value_3'] = (int)$result_array['sensor_value_3'];
-  if (strlen($result_array['datetime']) == 0) $result_array['datetime'] = "00-00-00 00:00:00";
+  if (strlen($result_array['datetime']) == 0) $result_array['datetime'] = "No data.";
 
-  if ($omitDatetime) $result_array['datetime'] = null;
   $json = json_encode($result_array);
   
   return $json;
 }
 
-$starting_content = $current_content = getLatestValuesfromDB(true);
+$starting_content = $current_content = getLatestValuesfromDB();
 
 $polling_delay_seconds = 0.5;
 
 if ($_GET['instant'] != '1') {
   while ($starting_content == $current_content && ($x < 15 / $polling_delay_seconds)) {
     usleep($polling_delay_seconds * 1000000); // Sleep 0.5s
-    $current_content = getLatestValuesfromDB(true);
+    $current_content = getLatestValuesfromDB();
     $x++;
   }
 }
 
-print_r(getLatestValuesfromDB(false));
+print_r(getLatestValuesfromDB());
 ?>
