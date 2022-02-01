@@ -1,6 +1,13 @@
 <?php
 date_default_timezone_set('Europe/Amsterdam');
 require 'secret/credentials.php';
+
+if ($_POST['pws'] != ProcessingPassword){
+  header("HTTP/1.1 401 Unauthorized");
+  header("xx-status: 401");
+  die();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // collect value of input field
@@ -18,11 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare("INSERT INTO waterlevel (`sensor_value_1`, `sensor_value_2`, `sensor_value_3`, `datetime`) VALUES (?,?,?,?)");
     $stmt->bind_param("iiis", $v1, $v2, $v3, $time);
     $stmt->execute();
-    echo "Values added successfully";
+    echo "Values $v1, $v2, $v3 posted";
     $stmt->close();
     $conn->close();
+    header("HTTP/1.1 201 Created");
+    header("xx-status: 201");
 
 } else {
     header("HTTP/1.1 400 Bad Request");
+    header("xx-status: 400");
   } 
 ?>
