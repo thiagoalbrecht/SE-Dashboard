@@ -2,7 +2,7 @@
 date_default_timezone_set('Europe/Amsterdam');
 require 'secret/credentials.php';
 
-if ($_POST['pws'] != ProcessingPassword){
+if ($_POST['pw'] != ProcessingPassword){
   header("HTTP/1.1 401 Unauthorized");
   header("xx-status: 401");
   die();
