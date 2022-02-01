@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
     <script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>
@@ -49,15 +50,62 @@
                 </div><button class="btn btn-outline-primary btn-sm" type="button" v-on:click="refreshItems(true, true)" :disabled="liveUpdate"><i class="fas fa-redo-alt me-2"></i>Refresh now</button>
                 <p style="margin-bottom: -6px;margin-top: 6px;font-size: 0.8em;">Last data received: <br />{{ lastdate }}</p>
             </div>
-        </div><button class="btn btn-outline-primary btn-sm switch-view" type="button" v-on:click="pipeView = !pipeView" style="position: fixed;top: 0;left: 0;margin: 5px;margin-left: 42px;"><i class="fas fa-exchange-alt me-1"></i>Switch view</button>
+        </div>
+        <div style="position: fixed;top: 0;left: 0;margin: 5px;margin-left: 41px;"><button class="btn btn-outline-primary btn-sm me-1 mb-1 switch-view" v-on:click="pipeView = !pipeView" type="button"><i class="fas fa-exchange-alt me-1"></i>Switch view</button><button class="btn btn-outline-primary btn-sm switch-view me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#chartmodal"><i class="far fa-chart-bar me-1"></i>Chart</button><button class="btn btn-outline-primary btn-sm mb-1 switch-view" type="button" data-bs-toggle="modal" data-bs-target="#About"><i class="fas fa-info-circle me-1"></i>About</button>
+        </div>
     <div id="PipeViewError" style="display: none;margin: 20px; margin-top: 40vh" v-bind:class="{ pipeviewerror: pipeView }" >
         <div role="alert" class="alert alert-warning text-center">
             <h4 class="alert-heading">Your screen is too small for the pipe view.</h4><span>Increase your window size or switch to the <strong>simple view</strong></span>
         </div>
     </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="chartmodal">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-fullscreen-lg-down" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Chart</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="chart"></div>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#Export" data-bs-dismiss="modal"><i class="fas fa-file-export me-2"></i>Export all data</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="Export">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Export data</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="rangesettings" method="get" action="export.php" target="_blank" enctype="application/x-www-form-urlencoded">
+                            <div class="input-group mb-2"><span class="input-group-text">From</span><input v-bind:disabled="exportAllCheckbox" class="form-control" type="datetime-local" name="from" required></div>
+                            <div class="input-group mb-2"><span class="input-group-text">To</span><input v-bind:disabled="exportAllCheckbox" class="form-control" type="datetime-local" name="to" required></div>
+                            <div class="form-check"><input v-model="exportAllCheckbox" class="form-check-input" type="checkbox" id="formCheck-2" name="anytime"><label class="form-check-label" for="formCheck-2">Export data from any time</label></div>
+                        </form>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#chartmodal" data-bs-dismiss="modal">Cancel</button><button class="btn btn-success" type="submit" form="rangesettings">Download CSV</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="About">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">About</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>This website was created as a part of the M2 2021 Smart Environments final project of Team 20. It displays the water level of our sewage system prototype pipes to detect any blockages.<br><br>The full code for this project can be found below:</p><a class="btn btn-dark btn-sm" role="button" href="https://github.com/thiagoalbrecht/SE-Dashboard"><i class="fab fa-github me-2"></i>GitHub</a>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button></div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
+    <script src="chart.js"></script>
 </body>
 
 </html>

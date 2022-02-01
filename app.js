@@ -11,7 +11,8 @@ var dashboardApp = new Vue({
         level3: '0',
         lastdate: '00-00-0000 00:00:00',
         liveUpdate: true,
-        pipeView: true
+        pipeView: true,
+        exportAllCheckbox: false
     },
 
     methods: {
@@ -28,6 +29,7 @@ var dashboardApp = new Vue({
                         this.level2 = response.data['sensor_value_2'];
                         this.level3 = response.data['sensor_value_3'];
                         this.lastdate = response.data['datetime'];
+                        refreshChart();
                         if (this.liveUpdate && repeat) {
                             this.refreshItems(false, true);
                         }
