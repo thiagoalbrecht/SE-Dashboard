@@ -14,8 +14,8 @@ require 'secret/credentials.php';
   }
 
 
-  $select_query = "SELECT `sensor_value_1`, `sensor_value_2`, `sensor_value_3`, `datetime` FROM `waterlevel` WHERE `datetime` BETWEEN '$from' AND '$to' ORDER BY `id` DESC";
-  if ($anytime) $select_query = "SELECT `sensor_value_1`, `sensor_value_2`, `sensor_value_3`, `datetime` FROM `waterlevel` WHERE `datetime` ORDER BY `id` DESC";
+  $select_query = "SELECT `sensor_value_1`, `sensor_value_2`, `sensor_value_3`, `datetime` FROM `waterlevel` WHERE `datetime` BETWEEN '$from' AND '$to' ORDER BY `id` ASC";
+  if ($anytime) $select_query = "SELECT `sensor_value_1`, `sensor_value_2`, `sensor_value_3`, `datetime` FROM `waterlevel` WHERE `datetime` ORDER BY `id` ASC";
 
   $result = $conn->query($select_query);
 
