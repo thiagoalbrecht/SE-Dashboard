@@ -24,7 +24,7 @@ require 'secret/credentials.php';
 if ($result->num_rows > 0) {
   // Start creating CSV file
   header("Content-Type: text/csv");
-  header("Content-Disposition: attachment; filename=file.csv");
+  header("Content-Disposition: attachment; filename=Water_Level_History.csv");
   // Define separator to comma
   echo "sep=,\n";
   // First line with title of columns
