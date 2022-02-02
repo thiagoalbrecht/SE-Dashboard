@@ -99,3 +99,10 @@ function refreshChart() {
 
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
+
+function forceUpdateRender() {
+    setTimeout(function () {
+        chart.windowResizeHandler();
+    }, 100);
+
+}

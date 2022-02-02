@@ -51,7 +51,7 @@
                 <p style="margin-bottom: -6px;margin-top: 6px;font-size: 0.8em;">Last data received: <br />{{ lastdate }}</p>
             </div>
         </div>
-        <div style="position: fixed;top: 0;left: 0;margin: 5px;margin-left: 41px;"><button class="btn btn-outline-primary btn-sm me-1 mb-1 switch-view" v-on:click="pipeView = !pipeView" type="button"><i class="fas fa-exchange-alt me-1"></i>Switch view</button><button class="btn btn-outline-primary btn-sm switch-view me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#chartmodal"><i class="far fa-chart-bar me-1"></i>Chart</button><button class="btn btn-outline-primary btn-sm mb-1 switch-view" type="button" data-bs-toggle="modal" data-bs-target="#About"><i class="fas fa-info-circle me-1"></i>About</button>
+        <div style="position: fixed;top: 0;left: 0;margin: 5px;margin-left: 41px;"><button class="btn btn-outline-primary btn-sm me-1 mb-1 switch-view" v-on:click="pipeView = !pipeView" type="button"><i class="fas fa-exchange-alt me-1"></i>Switch view</button><button class="btn btn-outline-primary btn-sm switch-view me-1 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#chartmodal" onclick="forceUpdateRender()"><i class="far fa-chart-bar me-1"></i>Chart</button><button class="btn btn-outline-primary btn-sm mb-1 switch-view" type="button" data-bs-toggle="modal" data-bs-target="#About"><i class="fas fa-info-circle me-1"></i>About</button>
         </div>
     <div id="PipeViewError" style="display: none;margin: 20px; margin-top: 40vh" v-bind:class="{ pipeviewerror: pipeView }" >
         <div role="alert" class="alert alert-warning text-center">
