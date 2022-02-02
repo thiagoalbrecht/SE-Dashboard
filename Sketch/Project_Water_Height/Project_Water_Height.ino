@@ -1,5 +1,5 @@
-#define ultraSonic1 A1
-#define ultraSonic2 A0
+#define ultraSonic1 A0
+#define ultraSonic2 A1
 #define ultraSonic3 A2
 int waterHeight1;
 int waterHeight2;
@@ -18,19 +18,31 @@ void loop() {
   waterHeight2 = map(analogRead(ultraSonic2), 0, 850, 100, 0);
   waterHeight3 = map(analogRead(ultraSonic3), 0, 850, 100, 0);
 
+  if(waterHeight1 < 0){
+    waterHeight1 = 0;
+    }
+   if(waterHeight2 < 0){
+    waterHeight2 = 0;
+    }
+   if(waterHeight3 < 0){
+    waterHeight3 = 0;
+    }
+   if(analogRead(ultraSonic1) == 1023){
+    waterHeight1 = 100;  
+    }
+   if(analogRead(ultraSonic2) == 1023){
+    waterHeight2 = 100;  
+    }
+   if(analogRead(ultraSonic3) == 1023){
+    waterHeight3 = 100;  
+    }
+
   Serial.print(waterHeight1);
   Serial.print("|");
   Serial.print(waterHeight2);
   Serial.print("|");
   Serial.print(waterHeight3);
   Serial.print(",");
-
-  //Code for the serial plotter
-  //  Serial.print(waterHeight1);
-  //  Serial.print(" ");
-  //  Serial.print(waterHeight2);
-  //  Serial.print(" ");
-  //  Serial.println(waterHeight3);
 
   delay(500);
 }
