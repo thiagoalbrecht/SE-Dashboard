@@ -7,29 +7,20 @@ This web app was created with Vue.js (mainly) for the frontend and PHP for the b
 
 Website: https://smartenv.salviano.xyz
 
-# Arduino and Processing instructions
+# Getting Started
 
-To sync the data from the Arduino to the website, you will need to use Processing.
+### Deploying website
 
-The code for both Arduino and Processing are located in the 'Sketch' folder in this repository. 
+You can deploy this repository to your webserver or download it and manually upload the files there (you do not need to upload the Sketch folder).
 
-You can [download the latest ZIP of the Sketch folder here](https://smartenv.salviano.xyz/files/Sketch.zip)
+#### Credentials setup:
 
-After you open the Processing sketch, you may adjust the serial port of the Arduino in this line (located in *void setup()*), in case the code doesn't work the first time:
-```Processing
-port = new Serial(this, Serial.list()[0], 9600);
-                                      ↑
-```
-Make sure the Arduino is connected and running the code from the Project_Water_Height.ino, also in the Sketch folder.
-Run the Processing sketch and check the processing console output. You should see a
-```
-Reponse Content: Values X, Y, Z posted
-```
-every time the value is sent to the server (by default every 1.5s), and you should see these values in real time on the website.
+You will have to set up your MySQL database credentials and create a password to allow the Processing sketch to send the values to the server. These credentials can be set up in the `secret/credentials.php` file.
 
-# Creating the MySQL Table
-You can create the database table for this project by running the SQL query below (you may paste this in your phpMyAdmin > SQL):
-```SQL
+#### Create a database:
+
+Create the database table for this project by running the SQL query below (you may paste this in your phpMyAdmin > SQL):
+```sql
 START TRANSACTION;
 --
 -- Table structure for table `waterlevel`
@@ -55,6 +46,45 @@ ALTER TABLE `waterlevel`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 ```
+
+#### Edit app.js:
+
+Finally, you also have to change the `rootURL` value in the first line of the `app.js` code:
+
+```javascript
+var rootURL = "https://example.com"; 
+// Change this to the address of where your website is hosted (including any paths), without a trailing slash, as shown here.
+```
+
+### Setting up the Arduino + Processing
+To sync the data from the Arduino to the website, you may use the "SE_CloudSender.pde" Processing sketch.
+
+The code for both Arduino and Processing are located in the 'Sketch' folder in this repository. 
+
+In Processing, first import the [HTTP Requests for Processing](https://github.com/runemadsen/HTTP-Requests-for-Processing) library
+
+Input the password you created in the constant `ProcessingPassword` in `secret/credentials.php` (line 5):
+```processing
+String password = "YOUR_PASSWORD_HERE";
+```
+
+Change the `PostRequest` value to the address of the `put.php` file (line 16):
+```processing
+PostRequest post = new PostRequest("https://example.com/put.php");
+```
+
+You may adjust the serial port of the Arduino in this line (located in *void setup()*), in case the code doesn't work the first time:
+```processing
+port = new Serial(this, Serial.list()[0], 9600);
+                                      ↑
+```
+Make sure the Arduino is connected and running the code from the Project_Water_Height.ino, also in the Sketch folder.
+
+Run the Processing sketch and check the processing console output. You should see a
+```
+Server Response: Values X, Y, Z posted
+```
+every time the value is sent to the server (by default every 1.5s), and you should see these values in real time on the website.
 
 # Dependencies
 
