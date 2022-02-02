@@ -48,13 +48,13 @@
 }
 
 .pipe-bar1 {
-  transform: translate(-212px, -137px);
+  transform: translate(-215px, 137px);
 }
 
 .pipe-bar2 {
-  transform: translate(300px, 181px);
+  transform: translate(300px, -188px);
 }
 
 .pipe-bar3 {
-  transform: translate(-350px, 181px);
+  transform: translate(-350px, -188px);
 }
