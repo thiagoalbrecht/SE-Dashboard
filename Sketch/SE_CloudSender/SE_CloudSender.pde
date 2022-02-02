@@ -18,7 +18,7 @@ PostRequest post = new PostRequest("https://smartenv.salviano.xyz/put.php");
 void setup() {
   size(400, 200);
   //println(Serial.list()); 
-  port = new Serial(this, Serial.list()[2], 9600);
+  port = new Serial(this, Serial.list()[0], 9600);
 }
 void draw() {
   background(0);
